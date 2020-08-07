@@ -126,11 +126,11 @@ div.overlay:target{
     position: absolute;
     top: 0;
     right: 0;
-    height: 35px;
-    width: 75px;
+    height: 50px;
+    width: 50px;
     background-color: #eee;
     transition: all 0.5s;
-    border-radius: 5px;
+    border-radius: 200px;
 }
 
 .rectangle:hover{
@@ -139,14 +139,15 @@ div.overlay:target{
 
 div.modal a.close{
     position: absolute;
-    top: -5px;
+    top: 0;
+    right: 10px;
     color: #fff;
     font-weight: 600;
     font-size: 33px;
     direction: rtl;
     transition: all 200ms;
-    padding-right: 10px;
-    padding-left: 35px;
+    /* padding-right: 10px; */
+    /* padding-left: 35px; */
 }
 
 div.modal a.close:hover{
