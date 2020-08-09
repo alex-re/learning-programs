@@ -4,6 +4,13 @@
     box-sizing: border-box;
 }
 
+/* body{  all things is center
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center; vertical
+    justify-content: center; horisantal
+} */
+
 .menu-container{
     color: #fff;
     background-image: linear-gradient(to right, #480048, #c04848);
