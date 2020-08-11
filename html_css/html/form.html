@@ -1,16 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-</head>
-<body>
 
-    <form action="1.html" method="POST" target="_blank" autocomplete="on" enctype="text/plain">
-        Name: <input type="text">
-        <button type="submit">submit</button>
-    </form>
-
-</body>
+<!DOCTYPE html> 
+<html> 
+  
+<head> 
+    <title>validate password</title> 
+    <script type="text/javascript"> 
+        function test_str() { 
+            var res; 
+            var str = 
+                document.getElementById("t1").value; 
+            if (str.match(/[a-z]/g) && str.match( 
+                    /[A-Z]/g) && str.match( 
+                    /[0-9]/g) && str.match( 
+                    /[^a-zA-Z\d]/g) && str.length >= 8) 
+                res = "TRUE"; 
+            else 
+                res = "FALSE"; 
+            document.getElementById("t2").value = res; 
+  
+        } 
+    </script> 
+</head> 
+  
+<body> 
+    <form action="1.html" method="POST" autocomplete="on" enctype="text/plain">
+    <p> 
+        String: 
+        <input type="text" 
+               placeholder="abc"
+               id="t1" /> 
+        <br/> 
+        <br/> 
+        <input type="button"
+               value="Check" 
+               onclick="test_str()" /> 
+        <br/> 
+        <br/> Output: 
+        <input type="text" 
+               id="t2"
+               readonly/> 
+    </p> 
+</form>
+</body> 
+  
 </html>
