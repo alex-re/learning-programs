@@ -84,11 +84,9 @@ console.log(c);
 console.log(d);
 
 // ________________________________________________________________________
-var cookie
+document.cookie.split(";")[0]
 
-cookie = document.cookie.split(";")[0]
-
-cookie = "another value"
+document.cookie = "email = another email"
 
 // ________________________________________________________________________
 
