@@ -34,6 +34,35 @@ class Employee:
         return True
 
 
+class Developer(Employee):
+    def __init__(self, first, last, pay, prog_lang):
+        super().__init__(first, last, pay)
+        # as same as each other
+        # Employee.__init__(self, first, last, pay)
+        self.prog_lang = prog_lang
+
+
+class Manager(Employee):
+    def __init__(self, first, last, pay, employees=None):
+        super().__init__(first, last, pay)
+        # if employees is None:
+            # self.employees = []
+        # else:
+            # self.employees = employees
+        self.employees = [] if employees is None else employees
+
+    def add_emp(self, emp):
+        if emp not in self.employees:
+            self.employees.append(emp)
+
+    def remove_emp(self, emp):
+        if emp in self.employees:
+            self.employees.remove(emp)
+    def print_emps(self):
+        for emp in self.employees:
+            print('-->', emp.fullname())
+
+
 emp_1 = Employee('ali', 'ALI', 1000)
 emp_2 = Employee('gholi', 'GHOLI', 2000)
 # print(Employee.num_of_emps)
@@ -46,7 +75,15 @@ emp_2 = Employee('gholi', 'GHOLI', 2000)
 # print(emp_1.pay)
 # Employee.set_raise_amount(1.05)
 # emp_str = Employee.from_string('test-user-3000')
+# import datetime
+# my_date = datetime.date(2016, 7, 11)
+# print(Employee.is_workday(my_date))
+# dev_1 = Developer('dev', 'lop', 6000, 'Python')
+mgr_1 = Manager('man', 'Smith', 6000, [emp_1])
+# mgr_1.print_emps()
+# print(isinstance(mgr_1, Employee))
+# print(isinstance(mgr_1, Manager))
+print(issubclass(Developer, Employee))
 
-import datetime
-my_date = datetime.date(2016, 7, 11)
-print(Employee.is_workday(my_date))
+
+
