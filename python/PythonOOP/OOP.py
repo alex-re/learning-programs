@@ -8,13 +8,31 @@ class Employee:
     def __init__(self, first, last, pay):
         self.first = first
         self.last = last
-        self.email = self.first + '.' + self.last + '@co.com'
+        # self.email = self.first + '.' + self.last + '@co.com'
         self.pay = pay
 
         Employee.num_of_emps += 1
 
-    def fullname(self):
+
+    @property  # It will be can be use like a property -> emp_1.email -> (without `()`)
+    def email(self):
+        return f"{self.first}.{self.last}@co.com"
+
+    @property
+    def fullname(self):  # Better to has property decorator ! as same as email function
         return "%s %s" % (self.first, self.last)
+
+    @fullname.setter
+    def fullname(self, name):
+        first, last = name.split(' ')
+        self.first = first
+        self.last = last
+
+    @fullname.deleter
+    def fullname(self, name):
+        print('Delete Name')
+        self.first = None
+        self.last = None
 
     def apply_raise(self):
         # self.pay = int(self.pay * Employee.raise_amount)
@@ -52,9 +70,6 @@ class Employee:
 
     def __len__(self):
         return len(self.fullname())
-
-
-
 
 
 class Developer(Employee):  # inherit from Employee
@@ -124,4 +139,9 @@ emp_2 = Employee('gholi', 'GHOLI', 2000)
 
 # print(emp_1 + emp_2)
 
-print(len(emp_1))
+# print(len(emp_1))
+
+# print(emp_1.email)
+# print(emp_1.fullname)
+
+# del emp_1.fullname
