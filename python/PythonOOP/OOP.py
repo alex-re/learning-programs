@@ -6,8 +6,8 @@ class Employee:
     def __init__(self, first, last, pay):
         self.first = first
         self.last = last
-        self.pay = pay
         self.email = self.first + '.' + self.last + '@co.com'
+        self.pay = pay
 
         Employee.num_of_emps += 1
 
