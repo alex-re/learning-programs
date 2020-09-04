@@ -1,5 +1,7 @@
-class Employee:
 
+
+class Employee:
+    
     raise_amount = 1.04
     num_of_emps = 0
 
@@ -33,8 +35,29 @@ class Employee:
             return False
         return True
 
+    #==================================MAGIC==================================
+    
+    # NOTE:
+        # str()  -->  Its goal is to be user freendly. (for users)
+        # repr()  -->  Its goal is to be unambiguous. (for developers)
+    
+    def __repr__(self):
+        return f"Employee('{self.first}', '{self.last}', {self.pay})"
 
-class Developer(Employee):
+    def __str__(self):
+        return f'{self.fullname()} - {self.email}'
+
+    def __add__(self, other):
+        return self.pay + other.pay
+
+    def __len__(self):
+        return len(self.fullname())
+
+
+
+
+
+class Developer(Employee):  # inherit from Employee
     def __init__(self, first, last, pay, prog_lang):
         super().__init__(first, last, pay)
         # as same as each other
@@ -42,7 +65,7 @@ class Developer(Employee):
         self.prog_lang = prog_lang
 
 
-class Manager(Employee):
+class Manager(Employee):  # inherit from Employee
     def __init__(self, first, last, pay, employees=None):
         super().__init__(first, last, pay)
         # if employees is None:
@@ -63,8 +86,13 @@ class Manager(Employee):
             print('-->', emp.fullname())
 
 
+
+
+
+
 emp_1 = Employee('ali', 'ALI', 1000)
 emp_2 = Employee('gholi', 'GHOLI', 2000)
+# print(emp_1)
 # print(Employee.num_of_emps)
 # print(emp_1.email)
 # print(emp_1.__dict__)
@@ -79,11 +107,21 @@ emp_2 = Employee('gholi', 'GHOLI', 2000)
 # my_date = datetime.date(2016, 7, 11)
 # print(Employee.is_workday(my_date))
 # dev_1 = Developer('dev', 'lop', 6000, 'Python')
-mgr_1 = Manager('man', 'Smith', 6000, [emp_1])
+# mgr_1 = Manager('man', 'Smith', 6000, [emp_1])
 # mgr_1.print_emps()
 # print(isinstance(mgr_1, Employee))
 # print(isinstance(mgr_1, Manager))
-print(issubclass(Developer, Employee))
+# print(issubclass(Developer, Employee))
+# print(repr(emp_1)) 
+# print(str(emp_1))
+# NOTE:
+    # repr(emp_1) == emp_1.__repr__()
+    # str(emp_1) == emp_1.__str__()
+    # len('abc') == 'abc'.__len__()
 
+# print(int.__add__(1, 2))  # 1 + 2
+# print(str.__add__('a', 'b'))  # 'a' + 'b'
 
+# print(emp_1 + emp_2)
 
+print(len(emp_1))
