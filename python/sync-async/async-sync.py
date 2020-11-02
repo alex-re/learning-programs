@@ -1,5 +1,59 @@
-# notes:
-# -   you can call async functions in async functions but you must use `await` keyword befor it.
+# shourt hand of functions:
+squares = [x*x for x in [1, 2 ,3 , 4 , 5]]
+print(squares)
+# OutPut: [1, 4, 9, 16, 25]
+
+
+# shourt hand of generators:
+squares = (x*x for x in [1, 2 ,3 , 4 , 5])
+print(squares)
+# OutPut: <generator object <genexpr> at 0x7f8502d40b30>
+for num in squares:
+    print(num)
+# OutPut:
+1
+4
+9
+16
+25
+
+print(list(squares))  # DO NOT USE THIS EVER NEVER: LOSE performans in memmory.
+# OutPut: [1, 4, 9, 16, 25]
+
+
+# Make itrable objects
+l = [1, 4, 9, 16, 25]
+iter_l = iter(l)
+next(iter_l)
+
+
+class MyRange:
+    def __init__(self, start, end):
+        self.value = start
+        self.end = end
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.value >= self.end:
+            raise StopIteration
+        current = self.value
+        self.value += 1
+        return current
+
+nums = MyRange(1, 10)
+print(next(nums))
+
+def my_range(start, end):
+    current = start
+    while current < end:
+        yield current
+        current += 1
+
+nums = my_range(1, 10)
+print(next(nums))
+
 
 def myrange(n):
     num = 0
