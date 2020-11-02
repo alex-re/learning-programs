@@ -14,7 +14,7 @@ async def download_file(url):
 
 async def write_file(n, content):
     filename = f'htmls/async_{n}.html'
-    with open(filename, 'wb')as f:
+    with open(filename, 'wb') as f:
         print(f'Started writing {filename}')
         f.write(content)
         print(f'Finished writing {filename}')
@@ -30,6 +30,7 @@ async def main():
     for n, url in enumerate(open('urls.txt').readlines()):
         tasks.append(scrape_task(n, url))
     await asyncio.wait(tasks)
+
 
 if __name__ == "__main__":
     t1 = time.perf_counter()
