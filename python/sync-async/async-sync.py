@@ -1,3 +1,6 @@
+# notes:
+# -   you can call async functions in async functions but you must use `await` keyword befor it.
+
 def myrange(n):
     num = 0
     while num < n:
@@ -12,24 +15,46 @@ def finder(s):
             print(input_text) 
 
 f = finder('python')
-f                                                                                                                                            
+f
 # OutPut: <generator object finder at 0x7f8503d30b30>
 
-f.send('some text including python')                                                                                                         
+f.send('some text including python')
 # TypeError: can't send non-None value to a just-started generator
 
 f.send(None)
-f.send('some text including python')                                                                                                         
+f.send('some text including python')
 # OutPut: some text including python
 
-f.send('not that word including')                                                                                                            
+f.send('not that word including')
 # OutPut:
 
-f.close()                                                                                                                                    
+f.close()
 
 
 f.throw(NameError, 'gholiiiiii')
 # NameError: gholiiiiii
+
+
+def yielder(source):
+    yield from source
+
+def _yielder(source):
+    for _ in source:
+        yield _
+
+_ = _yielder([1, 2, 3])
+
+next(_)
+# OutPut: 1
+
+next(_)
+# OutPut: 2
+
+next(_)
+# OutPut: 3
+
+next(_)
+# OutPut: StopIteration:
 
 
 def sayhi(name): 
@@ -40,7 +65,7 @@ async def _sayhi(name):
     return 'Hello ' + name 
 
 
-sayhi('gholi')                                                                                                                               
+sayhi('gholi')
 # OutPut: 'Hello gholi'
 
 _sayhi('gholi')
@@ -63,11 +88,14 @@ def run(coroutine):
     except StopIteration as e: 
         return e.value 
 
-run(_sayhi('gholi'))                                                                                                                         
+run(_sayhi('gholi'))
 # OutPut: 'Hello gholi'
 
 
 async def main():
+    '''
+    async functions can call another async function but you have to use `await` keyword befor it.
+    '''
     print(await _sayhi('gholi'))
 
 run(main())
@@ -79,7 +107,7 @@ async def main():
     for name in names: 
         print(await _sayhi(name)) 
 
-run(main())                                                                                                                                  
+run(main())
 # OutPut: Hello gholi
 # Hello ghasem
 # Hello ahmad
@@ -98,7 +126,7 @@ async def main():
     for n in range(30):
         print(await fib(n))
 
-run(main())                                                                                                                                  
+run(main())
 # OutPut:
 1
 1
@@ -136,10 +164,10 @@ async def main():
     print(fib(15)) 
 
 
-main()                                                                                                                                       
+main()
 # OutPut: <coroutine object main at 0x7f85036aee40>
 
-run(main())                                                                                                                                  
+run(main())
 # OutPut: <coroutine object fib at 0x7f85036f3040>
 # <ipython-input-66-29fab1d86084>:2: RuntimeWarning: coroutine 'fib' was never awaited
 #   print(fib(15))
@@ -149,7 +177,7 @@ run(main())
 async def main():
     print(await fib(15))
 
-run(main())                                                                                                                                  
+run(main())
 # OutPut: 987
 
 
@@ -160,7 +188,7 @@ async def okay():
     x = await fib(3) - await fib (1)
     print(f, d, x)
 
-run(okay())                                                                                                                                  
+run(okay())
 # OutPut: 89 {13: 2} 2
 
 
@@ -176,7 +204,7 @@ def synchronous(x):
 def synchronous():
     return 'string'
 
-await synchronous()                                                                                                                          
+await synchronous()
 # TypeError: object str can't be used in 'await' expression
 
 
