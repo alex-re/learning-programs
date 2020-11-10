@@ -1,29 +1,40 @@
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Test html</title>
 </head>
+
 <body>
-  <h1>Header</h1>  
+  <h1>Header</h1>
   <input type="text" id="inp" placeholder="Name">
   <button onclick="myFunc()">I have onclick !event!</button>
 
   <br>
   <div id="result">Result</div>
 
-  
+
   <form name="myForm" action="/" method="POST" onsubmit="return inpTestFunc()">
 
     Name : <input type="text" name="fname">
     <input type="submit" value="Submit">
   </form>
 
+  <button onclick="goBack()">Back</button>
+  <button onclick="goForward()">Forward</button>
+  <button onclick="myTimeout = setTimeout(sayHi, 3000)">Start 3 seconds</button> <!-- 3000 mili seconds -->
+  <button onclick="clearTimeout(myTimeout)">Stop</button> <!-- 3000 mili seconds -->
+  <button onclick="clearInterval(myTimer)">Stop</button>
+
+
   <script src="syntax.js"></script>
+
 </body>
 <script>
   (function () {
     console.log('Loded !')
   })();
 </script>
+
 </html>

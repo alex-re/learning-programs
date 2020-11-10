@@ -21,7 +21,7 @@ function myFunc() {
 var age = 17;
 switch (age) {
     case 15:
-        console.log('You are 17 now!');
+        console.log('You are 15 now!');
         break;
     case 10:
     case 11:
@@ -42,7 +42,7 @@ var text = "";
 for (let i = 0; i < names.length; i++) {
     // var name = names[i];
     let name = names[i];
-    document.write(name + "<br/>")    
+    document.write(name + "<br/>")
 }
 
 names.forEach(name => {
@@ -65,7 +65,7 @@ var x = document.getElementById('inp').value;
 
 try {
     if (x == '') throw 'emty';
-    if (isNaN(x)) throw 'not a number';    
+    if (isNaN(x)) throw 'not a number';
     x = Number(x);
     if (x < 5) throw 'too low';
     if (x > 10) throw 'too hight';
@@ -96,14 +96,14 @@ function inpTestFunc() {
     var x, text;
     x = document.getElementById('fname').value;
     // var x = document.forms["myForm"]["fname"].value;
-    if(isNaN(x) && x < 1 || x > 10) {
+    if (isNaN(x) && x < 1 || x > 10) {
         text = "Input Not Valid";
-        document.getElementById('demo').innerHTML=text;
-        document.getElementById('demo').style.color="red";
+        document.getElementById('demo').innerHTML = text;
+        document.getElementById('demo').style.color = "red";
     } else {
-        text="Input Ok ."
-        document.getElementById('demo').innerHTML=text;
-        document.getElementById('demo').style.color="green";
+        text = "Input Ok ."
+        document.getElementById('demo').innerHTML = text;
+        document.getElementById('demo').style.color = "green";
     }
 }
 // =========================
@@ -117,7 +117,7 @@ function Person(name, family, age) {
         return this.name + ' ' + this.family;
     }
     // this.fullName = () => {
-        // return this.name + ' ' + this.family;
+    // return this.name + ' ' + this.family;
     //   }
 }
 
@@ -140,7 +140,7 @@ var c1 = x(4, 5);
 var myCustomFunc = new Function('a', 'b', 'return a * b');
 var c2 = myCustomFunc(4, 5);
 //--------
-function sum(x=0, y=0) { // default values
+function sum(x = 0, y = 0) { // default values
     return x + y;
 }
 
@@ -149,7 +149,7 @@ function unlimitedArgs() {
         console.log(arguments[i]);
     }
 }
-unlimitedArgs(1 ,'gholi', true, 1.4);
+unlimitedArgs(1, 'gholi', true, 1.4);
 
 function add() {
     var count = 0;
@@ -161,3 +161,88 @@ function add() {
     return count;
 }
 // =========================
+
+// create element
+var para = document.createElement('p');
+var node = document.createTextNode('This is new !');
+para.appendChild(node);
+var element = document.getElementById('mydiv');
+// element.appendChild(para);
+var child = document.getElementById('p2');
+element.insertBefore(para, child);
+element.removeChild(child);
+element.removeChild(para, child);
+// =========================
+
+// html collections
+var myCollection = document.getElementsByTagName('p');
+console.log(myCollection[0].innerHTML);
+// console.log(myCollection[0].length);
+for (let i = 0; i < myCollection.length; i++) {
+    myCollection[i].style.color = 'red';
+}
+// =========================
+
+// width & height
+var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+console.log('Browser inner window width: ' + width + ', height: ' + height);
+alert(screen.availWidth);
+alert(screen.availHeight);
+alert(window.location.href);
+alert(window.location.hostname);
+alert(window.location.pathname);
+alert(window.location.protocol);
+function myFunction() {
+    window.location.assign('https://github.com');
+}
+// =========================
+
+// Browser history
+function goBack(params) {
+    window.history.back();
+}
+
+function goForward(params) {
+    window.history.forward();
+}
+// =========================
+
+// Browser popups
+function popups() {
+    alert('Alert!');
+    var answer;
+    if (confirm('Are you happy?')) {
+        answer = 'You pressed OK';
+    } else {
+        answer = 'You pressed Cancel';
+    }
+    document.getElementById('demo').innerHTML = answer;
+}
+
+function popups() {
+    var name = prompt('Please enter your name:  ', 'Default Name');
+    if (name == null || name == '') {
+        alert('oh')
+    } else {
+        alert('Hello ' + name)
+    }
+}
+// =========================
+
+// Timeout
+function sayHi() {
+    alert('Hello');
+}
+
+// var myTimeout = setTimeout(sayHi, 3000); // miliseconds
+// clearTimeout(myTimeout);
+// =========================
+
+// Timer
+var myTimer = setInterval(myTimerFunc, 1000); // Run it every 1000 miliseconds 
+
+function myTimerFunc() {
+    var d = new Date();
+    document.getElementById('result').innerHTML = d.toLocaleTimeString();
+}
