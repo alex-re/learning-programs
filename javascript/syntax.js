@@ -246,3 +246,69 @@ function myTimerFunc() {
     var d = new Date();
     document.getElementById('result').innerHTML = d.toLocaleTimeString();
 }
+// =========================
+
+// events
+function upperCase() {
+    element = document.getElementById('check-btn');
+    element.value = element.value.toUpperCase();
+}
+
+function changeInner(obj) {
+    obj.innerHTML = 'text changed!';
+}
+
+function mOver(obj) {
+    obj.innerHTML = 'Thanks!';
+}
+
+function mOut(obj) {
+    obj.innerHTML = 'Please hover agian!';
+}
+
+function mDown(obj) {
+    obj.style.backgroundColor = 'red';
+}
+
+function mUp(obj) {
+    obj.style.backgroundColor = 'green';
+}
+
+document.getElementById('myBtn').addEventListener('click', function () { // In this method we can execute many functions in one event.
+    console.log('clicked!');
+})
+
+// =========================
+
+// cookie
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+    var expires = 'expires=' + d.toGMTString();
+    document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
+}
+
+function getCookie(cname) {
+    var name = cname + '=';
+    var decodeCookie = decodeURIComponent(document.cookie);
+    var ca = decodeCookie.split(';')
+    for (let i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(name.length, c.length);
+        }
+    }
+    return '';
+}
+
+function chackCookie() {
+    var user = getCookie('username');
+    if (user != '') {
+        alert('welcom agian ' + user);
+    } else {
+        user = prompt('Please enter your name:  ', '');
+        if (user != '' && user != null) {
+            setCookie('username', user, 10);
+        }
+    }
+}
